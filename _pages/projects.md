@@ -7,7 +7,7 @@ nav: true
 nav_order: 2
 display_categories: [work, fun]
 horizontal: false
----
+#---   # Remove Hastag to activate projects.md file
 
 <!-- pages/projects.md -->
 <div class="projects">
