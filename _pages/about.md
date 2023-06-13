@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: <a href="http://www.iitkgp.ac.in/">Indian Institute of Technology Kharagpur</a>, <a href="http://www.chemistry.iitkgp.ac.in/"> Department of Chemistry </a>.
 

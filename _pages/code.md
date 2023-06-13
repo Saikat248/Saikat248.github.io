@@ -1,13 +1,13 @@
 ---
 layout: page
-title: projects
+title: Code
 permalink: /projects/
-description: A growing collection of your cool projects.
+description: A growing collection of my coding projects.
 nav: true
 nav_order: 2
 display_categories: [work, fun]
 horizontal: true
-#---   # Remove Hastag to activate projects.md file
+---
 
 <!-- pages/projects.md -->
 <div class="projects">
