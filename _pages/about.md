@@ -25,5 +25,5 @@ I am a Ph.D Student under the Department of Chemistry, IIT Kharagpur. I am
 working with Prof: [Anakuthil Anoop](http://www.chemistry.iitkgp.ac.in/~anoop/){:target="\_blank"}. My
 broad area of interest is the computational study of complex reaction mechanism.
 
-This site is currently under construction. (Still)
+This site is currently under construction. (Still awaiting)
 
