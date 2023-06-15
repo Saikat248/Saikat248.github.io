@@ -7,6 +7,10 @@ importance: 1
 category: work
 ---
 
+# Get the Code 
+
+Click the [Link](https://github.com/anooplab/ssa) for the Github repo of the SSA code  
+
 # Stochastic Modelling of Chemical Reaction Systems
 
 Chemical reactions are usually modelled by using the ordinary differential equations
@@ -20,8 +24,8 @@ process called *Stationary Markov Jump Process*.
 
 The development of various stochastic approaches and it's application to
 chemical kinetics primarily started with the work of
-McQuarrie\cite{McQuarrie_1967}. Later it is known as **Chemical Master
-Equation**. The basic assumption is to consider a system of volume $\Omega$ at
+[McQuarrie](https://www.jstor.org/stable/3212214). Later it is known as **Chemical Master
+Equation**. The basic assumption is to consider a system of volume $$\Omega$$ at
 thermal equilibrium at temperature $T$ containing a well-stirred reaction
 mixture of N chemical species $${S_1, S_2, S_3,...,S_N}$$.  These chemical
 species can interact through total $M$ chemical reactions $${R_1, R_2,
@@ -50,9 +54,8 @@ chemical reaction system exists in the state $$\textbf{x}$$ at time $t$ starting
 from the state $$\textbf{x}_0$$ at $$t = 0$$ is given
 
 $$
-    \dfrac{dP(\textbf{x},t|\textbf{x}_0)}{dt} = \sum_{j=1}^{M} a_j(\textbf{x} -
-    \nu_j)P(\textbf{x} - \nu_j,t|\textbf{x}_0) -
-    a_j(\textbf{x})P(\textbf{x},t|\textbf{x}_0) \label{eqn2}
+\label{eqn2}
+\dfrac{dP(\textbf{x},t|\textbf{x}_0)}{dt} = \sum_{j=1}^{M} a_j(\textbf{x} - \nu_j)P(\textbf{x} - \nu_j,t|\textbf{x}_0) - a_j(\textbf{x})P(\textbf{x},t|\textbf{x}_0) 
 $$
 
 This equation is known as the $${\textbf{Chemical Master Equation}}$$ (CME)
@@ -160,11 +163,28 @@ that the relative energy difference remains more or less identical. Increasing
 temperature of the stochastic simulation will affect the reaction rate via
 \emph{\textbf{Eyring Equation}}. 
 
-## Sample input file for SSA code
+# Features of Our Code 
+
+- This SSA implementation is more of a Chemist way in reaction mechanism study.
+- Written in Python, easy to understand and modify accordingly.
+- Restart Option, Convert checkpoint file to csv file etc.
+- Merge the results of two different simulation run. 
+- Integrated analysis with Pandas and Matplotlib for quick analysis.
+- Output is in csv format so can be plotted in any plotting tool.
+
+# Input file for SSA code
 
 YAML format is used to provide the inputs to the SSA code.
-A sample input file provided here. More input files
-are provided here.
+A sample input file can be generated from the command line
+
+{% raw %}
+```python
+python kinetics.py --sample_yaml conf.yaml 
+```
+{% endraw %}
+
+An example input file is provided here (used in the [publication](https://pubs.acs.org/doi/full/10.1021/acs.jpca.2c03762)). 
+
 
 {% raw %}
 ```yaml
@@ -172,7 +192,7 @@ Temp: 373         # Set Temperature of the simulation in Kelvin
 Steps: 5000000    # Number of Monte-Carlo Steps
 Initial_pop:      # Initial population of the reactants
    A0 : 1000
-   PH3: 4000 #6000
+   PH3: 4000 
    A1 : 0
    A2 : 0
    A3 : 0
@@ -250,4 +270,69 @@ Stoichiometry:
 ```
 {% endraw %}
 
+# Explanation of the input file 
 
+`Temp` is the temperature setting for the simulation.
+`Steps` are the number of Monte-Carlo step for the simulation.
+`Initial_pop` is the population of all the species at the beginning of the 
+simulation. In the above example only `A0`  and `PH3` species exists at the 
+beginning of the reaction. Populations of the other species involved in the whole reaction are set to zero. 
+
+Now the `Stoichiometry` section contains the reaction vector. e.g. the first line 
+is 
+
+{% raw %}
+```yaml
+Stoichiometry:
+#- [[G],[A0,PH3,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A16,A14,A15,A17,A18,A19,A20,A21,A23]]
+
+   - [[5.00],  [-1,-1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+```
+{% endraw %}
+
+Here `5.00` is the activation Gibbs free energy (in kcal/mol) of a particular elementary
+reaction (for this case `A0 + PH3 --> A1`). `-1` indicates that this particular species is consumed in this reaction 
+channel e.g in this case both `A0` and `PH3` and `1` indicates the species which is formed
+, in this case `A1`. AS others species are not involved in this reaction path so they are set to zero. The total number of items in this list 
+{% raw %}
+```yaml
+Stoichiometry:
+#- [[G],[A0,PH3,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A16,A14,A15,A17,A18,A19,A20,A21,A23]]
+    [-1,-1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+```
+{% endraw %}
+
+has to be same as the total number of species in the `Initial_pop` section. 
+The next line in the input file 
+{% raw %}
+```yaml
+Stoichiometry:
+#- [[G],[A0,PH3,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A16,A14,A15,A17,A18,A19,A20,A21,A23]]
+
+   - [[2.05],  [ 1, 1,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+```
+{% endraw %}
+
+is the reverse of the above reaction (`A0 + PH3 <-- A1`). In this way the reaction vectors are set up for all the elementary reaction involved in the whole reaction system.
+
+## Some sample results 
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/supp_temp_373.jpg" title="ssa run" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+Overall simulation Plot
+</div>
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/population.png" title="pie chart" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+Pie Chart for the final population of the products
+</div>
+
+Enjoy !!!
