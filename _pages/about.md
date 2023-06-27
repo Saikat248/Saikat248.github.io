@@ -19,10 +19,21 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Hi there !!!
+Hello there !!!
 
 I am a Ph.D Student under the Department of Chemistry, IIT Kharagpur. I am
 working with Prof: [Anakuthil Anoop](http://www.chemistry.iitkgp.ac.in/~anoop/){:target="\_blank"}. 
+
+
+My current research inetrsts includes:
+
+- Computational investigation of Complex transition metal catalysis, Organocatalysis.
+- Deloping automated computational workflow in reaction mechanism.
+- Electronic Structure and Chemical bonding Analysis
+- Data driven predictive chemistry 
+- Scientific analysis tool development
+- Qunatum chemical methodlogy development 
+
 
 
 
