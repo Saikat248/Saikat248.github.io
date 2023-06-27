@@ -19,11 +19,11 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Hi there, Welcome to my little corner in the internet !!!
+Hi there !!!
 
 I am a Ph.D Student under the Department of Chemistry, IIT Kharagpur. I am
-working with Prof: [Anakuthil Anoop](http://www.chemistry.iitkgp.ac.in/~anoop/){:target="\_blank"}. My
-broad area of interest is the computational study of complex reaction mechanism.
+working with Prof: [Anakuthil Anoop](http://www.chemistry.iitkgp.ac.in/~anoop/){:target="\_blank"}. 
+
 
 
 
